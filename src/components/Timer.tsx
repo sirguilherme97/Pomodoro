@@ -3,8 +3,8 @@ import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import ReactAudioPlayer from 'react-audio-player';
 import alarme from '../assets/alarme.mp3'
 
-const Countdown_Initial_time_in_seconds = 25 * 60// 25 minutes
-const Countdown_Initial_time_in_seconds_Rest = 5 * 60// 5 minutes
+const Countdown_Initial_time_in_seconds = 5// 25 minutes
+const Countdown_Initial_time_in_seconds_Rest = 5// 5 minutes
 
 export function Timer() {
     const [rest, setRest] = useState(false);
