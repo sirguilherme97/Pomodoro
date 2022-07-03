@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
-import ReactAudioPlayer from 'react-audio-player';
 import alarme from '../assets/alarme.mp3'
 
-const Countdown_Initial_time_in_seconds = 5// 25 minutes
-const Countdown_Initial_time_in_seconds_Rest = 5// 5 minutes
+const Countdown_Initial_time_in_seconds = 25 * 60// 25 minutes
+const Countdown_Initial_time_in_seconds_Rest = 5 * 60// 5 minutes
 
 export function Timer() {
-    const [rest, setRest] = useState(false);
+    const [rest, setRest] = useState(false)
     const [requestTimer, setRequestTimer] = useState(false);
     const [timer, setTimer] = useState(Countdown_Initial_time_in_seconds)
     const [timerRest, setTimerRest] = useState(Countdown_Initial_time_in_seconds_Rest)
@@ -18,7 +17,7 @@ export function Timer() {
     const xis1 = (timer * 100) / Countdown_Initial_time_in_seconds
     const xis2 = (timerRest * 100) / Countdown_Initial_time_in_seconds_Rest
     const audio = new Audio(alarme)
-    const [flag, setFlag] = useState(true);
+    const [flag, setFlag] = useState(true)
 
 
     useEffect(() => {
