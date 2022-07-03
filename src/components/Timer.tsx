@@ -87,13 +87,13 @@ export function Timer() {
                         </CircularProgress>
                     )
                 }
-                {requestTimer === false && flag === false && (
+                {/* {requestTimer === false && flag === false && (
                     <ReactAudioPlayer
                         src={alarme}
                         autoPlay={true}
                         volume={1}
                     />
-                )}
+                )} */}
             </section>
             <button
                 className='bg-blue-600 text-zinc-50 w-24 py-2 rounded-lg hover:bg-blue-700 transition-colors'
