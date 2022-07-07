@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from 'react'
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import alarme from '../assets/alarme.mp3'
+import ReactAudioPlayer from 'react-audio-player';
 
-const Countdown_Initial_time_in_seconds = 25 * 60// 25 minutes
+const Countdown_Initial_time_in_seconds = 5// 25 minutes
 const Countdown_Initial_time_in_seconds_Rest = 5 * 60// 5 minutes
 
 export function Timer() {
@@ -86,13 +88,13 @@ export function Timer() {
                         </CircularProgress>
                     )
                 }
-                {/* {requestTimer === false && flag === false && (
+                {requestTimer === false && flag === false && (
                     <ReactAudioPlayer
                         src={alarme}
                         autoPlay={true}
                         volume={1}
                     />
-                )} */}
+                )}
             </section>
             <button
                 className='bg-blue-600 text-zinc-50 w-24 py-2 rounded-lg hover:bg-blue-700 transition-colors'
