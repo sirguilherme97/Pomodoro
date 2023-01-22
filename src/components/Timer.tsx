@@ -4,7 +4,7 @@ import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import alarme from '../assets/alarme.mp3'
 import ReactAudioPlayer from 'react-audio-player';
 
-const Countdown_Initial_time_in_seconds = 5// 25 minutes
+const Countdown_Initial_time_in_seconds = 25 * 60// 25 minutes
 const Countdown_Initial_time_in_seconds_Rest = 5 * 60// 5 minutes
 
 export function Timer() {
@@ -21,9 +21,8 @@ export function Timer() {
     const audio = new Audio(alarme)
     const [flag, setFlag] = useState(true)
 
-
     useEffect(() => {
-
+        
         if (rest === true) {
             if (requestTimer === true) {
                 if (timerRest > 0) {
@@ -56,13 +55,14 @@ export function Timer() {
             }
         }
     }, [timer, timerRest, requestTimer])
+
     return (
-        <main className="flex flex-col  justify-center items-center gap-6 ">
+        <main className="flex flex-col w-screen h-screen justify-start mt-20 items-center gap-6 ">
             <section>
                 {rest === true ? (
-                    <h1 className='text-3xl font-medium'>Time to Rest</h1>
+                    <h1 className='text-5xl font-medium mb-5'>Time to Rest</h1>
                 ) : (
-                    <h1 className='text-3xl font-medium'>Time to Study</h1>
+                    <h1 className='text-5xl font-medium mb-5'>Time to Study</h1>
                 )}
             </section>
             <section className=' flex flex-col text-zinc-900 '>
@@ -70,9 +70,9 @@ export function Timer() {
                     <>
                         <CircularProgress value={xis2} size="200px" thickness='5px' >
                             <CircularProgressLabel>
-                                <span className="font-medium text-zinc-700 leading-relaxed">{String(minutesRest).padStart(2, '0')}</span>
-                                <span className="font-medium text-zinc-700 leading-relaxed">:</span>
-                                <span className="font-medium text-zinc-700 leading-relaxed">{String(secondsRest).padStart(2, '0')}</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">{String(minutesRest).padStart(2, '0')}</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">:</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">{String(secondsRest).padStart(2, '0')}</span>
                             </CircularProgressLabel>
                         </CircularProgress>
                     </>
@@ -81,9 +81,9 @@ export function Timer() {
 
                         <CircularProgress value={xis1} size="200px" thickness='5px' >
                             <CircularProgressLabel>
-                                <span className="font-medium text-zinc-700 leading-relaxed">{String(minutes).padStart(2, '0')}</span>
-                                <span className="font-medium text-zinc-700 leading-relaxed">:</span>
-                                <span className="font-medium text-zinc-700 leading-relaxed">{String(seconds).padStart(2, '0')}</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">{String(minutes).padStart(2, '0')}</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">:</span>
+                                <span className="text-5xl   font-medium text-blue-900 leading-relaxed">{String(seconds).padStart(2, '0')}</span>
                             </CircularProgressLabel>
                         </CircularProgress>
                     )
@@ -97,11 +97,37 @@ export function Timer() {
                 )}
             </section>
             <button
-                className='bg-blue-600 text-zinc-50 w-24 py-2 rounded-lg hover:bg-blue-700 transition-colors'
+                className='bg-blue-600 text-zinc-50 w-[15%] text-xl font-bold hover:scale-105 transition- py-4 rounded-lg hover:bg-blue-700 shadow-xl shadow-zinc-300'
                 onClick={() => { setRequestTimer(!requestTimer) }}>
                 {!requestTimer === true ? "Start" : "Stop"}
             </button>
+            {!requestTimer === true ? (
+                <div className='flex flex-row gap-40 items-center justify-evenly max-w-2/3 w-2/3 h-[25%]'>
+                    <div className='flex flex-col items-center justify-center w-[30%] gap-4 bg-slate-200 pb-10 rounded-xl'>
+                        <h1 className='text-zinc-800 font-semibold text-xl mt-10'>Study Timer Settings</h1>
+                        <input
+                            type="number"
+                            className=" bg-slate-300 rounded-sm w-[90%] h-14 text-zinc-900 px-4 py-0 text-xl placeholder:text-zinc-700 font-bold placeholder:font-semibold"
+                            placeholder="Minutos "
+                            onChange={(e) => {
+                                setTimer(e.target.value.toString() * 60)
+                            }}
+                        />
 
+                    </div>
+                    <div className='flex flex-col  items-center justify-center w-[30%] gap-4  bg-zinc-200 pb-10 rounded-xl'>
+                        <h1 className='text-zinc-800 font-semibold text-xl mt-10'>Rest Timer Settings</h1>
+                        <input
+                            type="number"
+                            onChange={(e) => {
+                                setTimerRest(e.target.value.toString() * 60)
+                            }}
+                            className="bg-slate-300 rounded-sm w-[90%] h-14 text-zinc-900 px-4 py-0 text-xl placeholder:text-zinc-700 font-bold placeholder:font-semibold"
+                            placeholder="Minutos " />
+
+                    </div>
+                </div>
+            ) : (<></>)}
         </main>
     )
 }
