@@ -10,8 +10,8 @@ const Countdown_Initial_time_in_seconds_Rest = 5 * 60// 5 minutes
 export function Timer() {
     const [rest, setRest] = useState(false)
     const [requestTimer, setRequestTimer] = useState(false);
-    const [timer, setTimer] = useState(Countdown_Initial_time_in_seconds)
-    const [timerRest, setTimerRest] = useState(Countdown_Initial_time_in_seconds_Rest)
+    const [timer, setTimer] = useState<number>(Countdown_Initial_time_in_seconds)
+    const [timerRest, setTimerRest] = useState<number>(Countdown_Initial_time_in_seconds_Rest)
     const minutes = Math.floor(timer / 60)
     const seconds = timer % 60
     const minutesRest = Math.floor(timerRest / 60)
@@ -22,7 +22,7 @@ export function Timer() {
     const [flag, setFlag] = useState(true)
 
     useEffect(() => {
-        
+
         if (rest === true) {
             if (requestTimer === true) {
                 if (timerRest > 0) {
@@ -110,7 +110,7 @@ export function Timer() {
                             className=" bg-slate-300 rounded-sm w-[90%] h-14 text-zinc-900 px-4 py-0 text-xl placeholder:text-zinc-700 font-bold placeholder:font-semibold"
                             placeholder="Minutos "
                             onChange={(e) => {
-                                setTimer(e.target.value.toString() * 60)
+                                setTimer(Number(e.target.value) * 60)
                             }}
                         />
 
@@ -120,7 +120,7 @@ export function Timer() {
                         <input
                             type="number"
                             onChange={(e) => {
-                                setTimerRest(e.target.value.toString() * 60)
+                                setTimerRest(Number(e.target.value) * 60)
                             }}
                             className="bg-slate-300 rounded-sm w-[90%] h-14 text-zinc-900 px-4 py-0 text-xl placeholder:text-zinc-700 font-bold placeholder:font-semibold"
                             placeholder="Minutos " />
